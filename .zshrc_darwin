@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias k="kubectl"
 alias v="nvim"
+alias cm="chezmoi"
 
 export K9S_CONFIG_DIR="~/.config/k9s"
 

@@ -1,6 +1,10 @@
 k9s:
   liveViewAutoRefresh: false
-  screenDumpDir: ~/.config/k9s/screen-dumps
+  {{ if eq .chezmoi.os "darwin" -}}
+  screenDumpDir: /home/filip/.config/k9s/screen-dumps
+  {{- else if eq .chezmoi.os "linux" -}}
+  screenDumpDir: /Users/FMilkovic/.config/k9s/screen-dumps
+  {{- end }} 
   refreshRate: 2
   maxConnRetry: 5
   readOnly: false
