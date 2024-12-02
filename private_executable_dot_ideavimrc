@@ -1,0 +1,142 @@
+"    ______ _ _ _       _             _
+"   |  ____(_) (_)     ( )           (_)
+"   | |__   _| |_ _ __ |/ ___  __   ___ _ __ ___  _ __ ___
+"   |  __| | | | | '_ \  / __| \ \ / / | '_ ` _ \| '__/ __|
+"   | |    | | | | |_) | \__ \  \ V /| | | | | | | | | (__
+"   |_|    |_|_|_| .__/  |___/   \_/ |_|_| |_| |_|_|  \___|
+"                | |
+"                |_|
+" Now for IdeaVim!
+
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+let mapleader = " "
+
+" Set relative numbers
+set rnu
+
+" Stop the sound!
+set visualbell
+set noerrorbells
+
+set scrolloff=8
+
+" Plugins
+set commentary
+set sneak
+set quickscope
+set which-key
+
+Plug 'machakann/vim-highlightedyank'
+
+Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdtree'
+
+set incsearch
+set ideajoin
+set idearefactormode=keep
+set notimeout
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+nmap g] :action GotoImplementation<CR>
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+
+" single letter actions
+map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+map <leader>o <Action>(OptimizeImports)
+map <leader>f <Action>(Switcher)
+map <leader>g <Action>(Generate)
+map <leader>a <Action>(ShowIntentionActions)
+map <leader>p <Action>(ShowPopupMenu)
+map <leader>c <Action>(Stop)
+
+" d - debug actions and control
+map <leader>db <Action>(ToggleLineBreakpoint)
+map <leader>dc <Action>(RunToCursor)
+map <leader>do <Action>(StepOver)
+map <leader>di <Action>(StepInto)
+map <leader>dr <Action>(Resume)
+
+" r - reformat/rename
+map <leader>rc <Action>(ReformatCode)
+map <leader>re <Action>(RenameElement)
+" rs - external stack trace
+map <leader>ru <Action>(Unscramble)
+map <leader>rs <Action>(ChangeSignature)
+xmap <leader>rm <Action>(ExtractMethod)
+
+" x - execute
+map <leader>xr <Action>(Run)
+map <leader>xd <Action>(Debug)
+map <leader>xc <Action>(RunClass)
+map <leader>xe <Action>(RunAnything)
+"map <leader>xw <Action>(RedesignedRunConfigurationSelector) " Does not work atm
+
+" v - vcs actions
+map <leader>vv <Action>(Vcs.QuickListPopupAction)
+map <leader>vt <Action>(CheckinProject)
+map <leader>vt <Action>(Git.Commit.Stage)
+map <leader>vu <Action>(Vcs.UpdateProject)
+map <leader>vp <Action>(Vcs.Push)
+map <leader>va <Action>(Annotate)
+map <leader>vb <Action>(Git.Branches)
+map <leader>vc <Action>(Vcs.RollbackChangedLines)
+
+" s - select/surround
+map <leader>ss <Action>(SelectInProjectView)
+map <leader>se <Action>(SearchEverywhere)
+map <leader>sn <Action>(GotoClass)
+map <leader>sf <Action>(GotoFile)
+map <leader>sw <Action>(SurroundWith)
+map <leader>sc <Action>(RecentChangedFiles)
+
+" n - new
+map <leader>ns <Action>(NewScratchFile)
+map <leader>nf <Action>(NewElementSamePlace)
+
+" w - window actions
+map <leader>wa <Action>(ActivateAIAssistantToolWindow)
+map <leader>wd <Action>(ActivateDebugToolWindow)
+map <leader>wv <Action>(ActivateVersionControlToolWindow)
+map <leader>ws <Action>(ActivateServicesToolWindow)
+map <leader>wr <Action>(ActivateRunToolWindow)
+map <leader>wh <Action>(ActivateHierarchyToolWindow)
+map <leader>wf <Action>(ActivateProjectToolWindow)
+map <leader>wt <Action>(ActivateTerminalToolWindow)
+map <leader>wb <Action>(ActivateDatabaseToolWindow)
+map <leader>wm <Action>(ActivateMavenToolWindow)
+map <leader>wl <Action>(ActivateSonarLintToolWindow)
+map <leader>wp <Action>(ActivateProblemsViewToolWindow)
+map <leader>wo <Action>(ActivateTODOToolWindow)
+
+" Share copied stuff to clipboard
+set clipboard+=unnamed
+"nnoremap yy "+yy
+"nnoremap y "+y
+
+"nnoremap p "+p
+"vnoremap p "+p
+"nnoremap P "+P
+"vnoremap P "+P
+
+" Move selected block lines up or down
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+" Trident configuration
+
+" Append the current file to the list
+map <leader>ta <Action>TridentAppend
+" Open the quick menu
+"map <leader>tt <Action>TridentToggleQuickMenu
+" Select the given file (from the Quick Menu) and open it
+"map <leader>to  <Action>TridentQuickMenuSelect
+" Hotkeys to open the first 4 items in the list
+" map 1 :action TridentSelect1
+" map 2 :action TridentSelect2
+" map 3 :action TridentSelect3
+" map 4 :action TridentSelect4
