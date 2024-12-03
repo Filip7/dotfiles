@@ -1,0 +1,1 @@
+{"title":"Right Command to Shift + Ctrl + f13","rules":[{"description":"Send Shift + Ctrl + f13 on Right Command to emulate Compose Key (http://lolengine.net/blog/2012/06/17/compose-key-on-os-x)","manipulators":[{"type":"basic","from":{"key_code":"right_gui"},"to":[{"repeat":false,"key_code":"f13","modifiers":["left_control","left_shift"]}]}]}]}

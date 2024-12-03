@@ -1,0 +1,29 @@
+{
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Send Shift + Ctrl + f13 on Right Command to emulate Compose Key (http://lolengine.net/blog/2012/06/17/compose-key-on-os-x)",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "right_gui" },
+                                "to": [
+                                    {
+                                        "key_code": "f13",
+                                        "modifiers": ["left_control", "left_shift"],
+                                        "repeat": false
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}
