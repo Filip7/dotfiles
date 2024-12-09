@@ -107,8 +107,6 @@ alias k="kubectl"
 alias v="nvim"
 alias cm="chezmoi"
 
-export K9S_CONFIG_DIR="~/.config/k9s"
-
 eval export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
 export HOMEBREW_REPOSITORY="/opt/homebrew";
