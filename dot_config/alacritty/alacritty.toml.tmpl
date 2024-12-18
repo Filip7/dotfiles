@@ -4,5 +4,8 @@ opacity = 0.95
 
 [font]
 normal = { family = "JetBrainsMono NF", style = "Regular"}
+{{ if eq .chezmoi.os "darwin" -}}
 size = 15
-
+{{- else if eq .chezmoi.os "linux" -}}
+size = 12
+{{- end }} 
