@@ -7,3 +7,6 @@ gtk-adwaita = false
 gtk-tabs-location = bottom
 #gtk-tabs-location = hidden
 {{- end }}
+{{ if eq .chezmoi.os "darwin" -}}
+font-size = 15
+{{- end }}
