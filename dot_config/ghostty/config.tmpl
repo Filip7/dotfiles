@@ -1,5 +1,4 @@
 theme = Dark+
-
 {{ if eq .chezmoi.os "linux" -}}
 # Disable "beautiful" GTK stuff to make it look better on KDE or Qt based systems
 gtk-titlebar = false
@@ -9,4 +8,5 @@ gtk-tabs-location = bottom
 {{- end }}
 {{ if eq .chezmoi.os "darwin" -}}
 font-size = 15
+window-save-state = always
 {{- end }}
