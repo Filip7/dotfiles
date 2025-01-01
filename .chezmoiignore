@@ -3,3 +3,6 @@ README.md
 .config/karabiner
 Library/*
 {{- end }}
+{{- if ne .chezmoi.os "linux" }}
+.config/kde-builder.yaml
+{{- end }}
