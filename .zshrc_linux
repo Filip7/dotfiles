@@ -108,6 +108,7 @@ source $ZSH/oh-my-zsh.sh
 #
 alias k="kubectl"
 alias v="nvim"
+alias vc="nvim --clean"
 alias cm="chezmoi"
 alias ls='ls --color=tty --group-directories-first'
 export LC_ALL=C.UTF-8

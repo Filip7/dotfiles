@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias k="kubectl"
 alias v="nvim"
+alias vc="nvim --clean"
 alias cm="chezmoi"
 
 eval export HOMEBREW_PREFIX="/opt/homebrew";
