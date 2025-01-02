@@ -106,7 +106,6 @@ source $ZSH/oh-my-zsh.sh
 alias k="kubectl"
 alias v="nvim"
 alias cm="chezmoi"
-alias ls='ls --color=tty --group-directories-first'
 
 eval export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
