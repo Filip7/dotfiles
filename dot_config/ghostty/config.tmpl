@@ -1,14 +1,15 @@
 theme = Dark+
+
+# This looks bad on linux in combination with adwaita and gtk-titlebar off
+# But will live with that until https://github.com/ghostty-org/ghostty/issues/4630 is resolved
+background-opacity = 0.95
+background-blur-radius = 20
 {{ if eq .chezmoi.os "linux" -}}
 # Disable "beautiful" GTK stuff to make it look better on KDE or Qt based systems
 gtk-titlebar = false
 gtk-adwaita = false
 #gtk-tabs-location = hidden
 gtk-tabs-location = bottom
-# This looks bad on linux in combination with adwaita and gtk-titlebar off
-# But will live with that until https://github.com/ghostty-org/ghostty/issues/4630 is resolved
-background-opacity = 0.65
-background-blur-radius = 20
 {{- end }}
 {{ if eq .chezmoi.os "darwin" -}}
 font-size = 15
