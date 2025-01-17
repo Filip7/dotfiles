@@ -1,20 +1,16 @@
 theme = Dark+
 
-# This looks bad on linux in combination with adwaita and gtk-titlebar off
-# But will live with that until https://github.com/ghostty-org/ghostty/issues/4630 is resolved
-background-opacity = 0.95
 background-blur-radius = 20
 {{ if eq .chezmoi.os "linux" -}}
-# Disable "beautiful" GTK stuff to make it look better on KDE or Qt based systems
-gtk-titlebar = false
-gtk-adwaita = false
+background-opacity = 0.85
+# Use SSD instead of CSD
+window-decoration = server
+# This now works, but there is no way to see how many tabs there are, and that is problematic
 #gtk-tabs-location = hidden
 gtk-tabs-location = bottom
-# To remove two gtk settings at the top and uncomment line below once https://github.com/ghostty-org/ghostty/pull/4724
-# is merged
-window-decoration = server
 {{- end }}
 {{ if eq .chezmoi.os "darwin" -}}
+background-opacity = 0.95
 font-size = 15
 font-thicken = true
 window-save-state = always
