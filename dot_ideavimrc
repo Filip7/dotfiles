@@ -16,7 +16,7 @@
 " Now using .idea-lazy.vim from https://gist.github.com/mikeslattery/d2f2562e5bbaa7ef036cf9f5a13deff5
 " All credit goes to mikeslattery and luqasn for dot_idea-lazy.vim file
 
-" TODO - add again all the missing featrues from https://github.com/Filip7/dotfiles/blob/main/private_executable_dot_ideavimrc
+" TODO - add again all the missing features from https://github.com/Filip7/dotfiles/blob/19f0d73948317ad3a3e34283033af559d0af1533/private_executable_dot_ideavimrc
 source ~/.idea-lazy.vim
 
 set quickscope
@@ -24,6 +24,9 @@ Plug 'machakann/vim-highlightedyank'
 
 Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdtree'
+
+" Share copied stuff to clipboard
+set clipboard+=unnamed
 
 " ###### Missing keybinding
 
@@ -40,3 +43,4 @@ map <leader>xe <Action>(RunAnything)
 
 " Search everywhere
 map <leader>se <Action>(SearchEverywhere)
+
