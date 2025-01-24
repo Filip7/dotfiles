@@ -1,0 +1,42 @@
+"    ______ _ _ _       _             _
+"   |  ____(_) (_)     ( )           (_)
+"   | |__   _| |_ _ __ |/ ___  __   ___ _ __ ___  _ __ ___
+"   |  __| | | | | '_ \  / __| \ \ / / | '_ ` _ \| '__/ __|
+"   | |    | | | | |_) | \__ \  \ V /| | | | | | | | | (__
+"   |_|    |_|_|_| .__/  |___/   \_/ |_|_| |_| |_|_|  \___|
+"                | |
+"                |_|
+" Now for IdeaVim!
+
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+"
+" Now using .idea-lazy.vim from https://gist.github.com/mikeslattery/d2f2562e5bbaa7ef036cf9f5a13deff5
+" All credit goes to mikeslattery and luqasn for dot_idea-lazy.vim file
+
+" TODO - add again all the missing featrues from https://github.com/Filip7/dotfiles/blob/main/private_executable_dot_ideavimrc
+source ~/.idea-lazy.vim
+
+set quickscope
+Plug 'machakann/vim-highlightedyank'
+
+Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdtree'
+
+" ###### Missing keybinding
+
+" GIT
+map <leader>gp <Action>(Vcs.Push)
+map <leader>gv <Action>(Vcs.QuickListPopupAction)
+map <leader>gu <Action>(Vcs.UpdateProject)
+
+" Run and Debug - x is not the best keybinding possible, but do not know what to use instead
+map <leader>xr <Action>(Run)
+map <leader>xd <Action>(Debug)
+map <leader>xc <Action>(RunClass)
+map <leader>xe <Action>(RunAnything)
+
+" Search everywhere
+map <leader>se <Action>(SearchEverywhere)
