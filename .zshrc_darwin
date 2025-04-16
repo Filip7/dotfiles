@@ -118,6 +118,7 @@ export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 export HOMEBREW_CASK_OPTS="--appdir=/Users/FMilkovic/Applications"
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+export DOCKER_HOST="unix://${HOME}/.colima/docker.sock"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
