@@ -6,4 +6,5 @@ Library/*
 {{- end }}
 {{- if ne .chezmoi.os "linux" }}
 .config/kde-builder.yaml
+.config/hypr/hyprland.conf
 {{- end }}
