@@ -93,74 +93,29 @@ fi
 
 # function that changes directory to a project inside Workspace
 # if -e is passed, it will instead open neovim inside that directory
-function ws() {
-    local base_dir="${HOME}/Workspace"
-    local project_name=""
-    local execute_flag=false
+function wd() {
+    # Temporary file for capturing stderr
+    local stderr_file=$(mktemp)
 
-    # Parse command line arguments
-    while getopts "e" opt; do
-        case $opt in
-            e)
-                execute_flag=true
-                ;;
-            *)
-                echo "Usage: ws [-e] [project_name]"
-                return 1
-                ;;
-        esac
-    done
-    shift $((OPTIND -1))
+    # Run the command, capturing stdout normally and redirecting stderr to the temp file
+    local stdout
+    stdout=$(/home/filip/Workspace/workcd-go/workcd-go "$@" 2>"$stderr_file")
 
-    # Project name is now the first argument after options
-    project_name="${1}"
-
-    # If no project name is supplied, cd into the base directory if it exists
-    if [[ -z "$project_name" ]]; then
-        if [[ -d "$base_dir" ]]; then
-            cd "$base_dir" || { echo "Failed to cd into $base_dir"; return 1 }
-            echo "Changed directory to $base_dir"
-            if [[ "$execute_flag" = true ]]; then
-                v .
-            fi
-        else
-            echo "Base directory $base_dir does not exist."
-        fi
-        return
-    fi
-
-    # Check if base directory exists
-    if [[ ! -d "$base_dir" ]]; then
-        echo "Base directory $base_dir does not exist."
+    # Check if there was any error output
+    if [[ -s "$stderr_file" ]]; then
+        local stderr_content
+        stderr_content=$(cat "$stderr_file")
+        echo "Error: $stderr_content" >&2
+        rm -f "$stderr_file"
         return 1
     fi
 
-    # Search for closest match among directories
-    local closest_match=""
-    local match_score=0
-    local current_score
+    # Clean up the temp file
+    rm -f "$stderr_file"
 
-    for dir in "$base_dir"/*(N); do
-        dir_name="${dir:t}" # Extract directory name from path
-        # Compute similarity score (simple version: ignore case and check if project_name is part of dir_name)
-        if [[ "${dir_name:l}" == *"${project_name:l}"* ]]; then
-            current_score=${#dir_name} # Length of the directory name as a basic score
-            if [[ $current_score -gt $match_score ]]; then
-                match_score=$current_score
-                closest_match="$dir"
-            fi
-        fi
-    done
-
-    # If a match is found, cd into it; otherwise, echo no match found
-    if [[ -n "$closest_match" ]]; then
-        cd "$closest_match" || echo "Could not cd into $closest_match"
-        echo "Changed directory to $closest_match"
-        if [[ "$execute_flag" = true ]]; then
-            nvim .
-        fi
-    else
-        echo "No matching directory found for project: $project_name"
+    # Process stdout if no errors
+    if [[ -n "$stdout" ]]; then
+        eval "$stdout"
     fi
 }
 
