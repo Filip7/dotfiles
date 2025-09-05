@@ -101,6 +101,9 @@ function wd() {
     local stdout
     stdout=$(/home/filip/Workspace/workcd-go/workcd-go "$@" 2>"$stderr_file")
 
+    # debug of the command
+    #echo "$stdout"
+
     # Check if there was any error output
     if [[ -s "$stderr_file" ]]; then
         local stderr_content
@@ -118,6 +121,8 @@ function wd() {
         eval "$stdout"
     fi
 }
+
+alias kde="wd --base-dir ~/Workspace/kde/src"
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
