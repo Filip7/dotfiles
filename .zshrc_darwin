@@ -88,6 +88,79 @@ else
   export EDITOR='nvim'
 fi
 
+function wd() {
+    # Temporary file for capturing stderr
+    local stderr_file=$(mktemp)
+
+    # Run the command, capturing stdout normally and redirecting stderr to the temp file
+    local stdout
+    stdout=$(/Users/FMilkovic/Workspace/workcd-go/workcd-go "$@" 2>"$stderr_file")
+
+    # Check if there was any error output
+    if [[ -s "$stderr_file" ]]; then
+        local stderr_content
+        stderr_content=$(cat "$stderr_file")
+        echo "Error: $stderr_content" >&2
+        rm -f "$stderr_file"
+        return 1
+    fi
+
+    # Clean up the temp file
+    rm -f "$stderr_file"
+
+    # Process stdout if no errors
+    if [[ -n "$stdout" ]]; then
+        eval "$stdout"
+    fi
+}
+
+# Interactively select namespace and pod, then connect to it
+function ke() {
+  local ns="${1:-}"
+  local pod
+
+  # If no namespace provided, select interactively
+  if [[ -z "$ns" ]]; then
+    ns=$(kubectl get ns 2>/dev/null | fzf | awk '{print $1}')
+    if [[ -z "$ns" ]]; then
+      echo "No namespace selected." >&2
+      return 1
+    fi
+  fi
+
+  # Select pod
+  pod=$(kubectl get po -n "$ns" 2>/dev/null | fzf | awk '{print $1}')
+
+  if [[ -n "$pod" ]]; then
+    kubectl exec -it "$pod" -n "$ns" -- /bin/bash
+  else
+    echo "No pod selected." >&2
+  fi
+}
+
+function kl() {
+  local ns="${1:-}"
+  local pod
+
+  # If no namespace provided, select interactively
+  if [[ -z "$ns" ]]; then
+    ns=$(kubectl get ns 2>/dev/null | fzf | awk '{print $1}')
+    if [[ -z "$ns" ]]; then
+      echo "No namespace selected." >&2
+      return 1
+    fi
+  fi
+
+  # Select pod
+  pod=$(kubectl get po -n "$ns" 2>/dev/null | fzf | awk '{print $1}')
+
+  if [[ -n "$pod" ]]; then
+    kubectl logs -f "$pod" -n "$ns"
+  else
+    echo "No pod selected." >&2
+  fi
+}
+
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
