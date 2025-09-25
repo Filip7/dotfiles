@@ -1,6 +1,7 @@
 theme = Dark+
 
 background-blur-radius = 20
+keybind = global:ctrl+;=toggle_quick_terminal
 {{ if eq .chezmoi.os "linux" -}}
 background-opacity = 0.85
 # Use SSD instead of CSD
@@ -14,5 +15,4 @@ background-opacity = 0.95
 font-size = 15
 font-thicken = true
 window-save-state = always
-keybind = global:ctrl+;=toggle_quick_terminal
 {{- end }}
