@@ -96,13 +96,9 @@ fi
 function wd() {
     # Temporary file for capturing stderr
     local stderr_file=$(mktemp)
-
     # Run the command, capturing stdout normally and redirecting stderr to the temp file
     local stdout
     stdout=$(/home/filip/Workspace/workcd-go/workcd-go "$@" 2>"$stderr_file")
-
-    # debug of the command
-    #echo "$stdout"
 
     # Check if there was any error output
     if [[ -s "$stderr_file" ]]; then
@@ -113,10 +109,20 @@ function wd() {
         return 1
     fi
 
+    # Check if --print-config is in the arguments
+    for arg in "$@"; do
+        if [[ "$arg" == "--print-config" ]]; then
+            # Print the stdout directly and exit
+            echo "$stdout"
+            rm -f "$stderr_file"
+            return 0
+        fi
+    done
+
     # Clean up the temp file
     rm -f "$stderr_file"
 
-    # Process stdout if no errors
+    # Process stdout if no errors and no --print-config flag
     if [[ -n "$stdout" ]]; then
         eval "$stdout"
     fi
