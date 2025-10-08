@@ -93,7 +93,7 @@ function wd() {
     local stderr_file=$(mktemp)
     # Run the command, capturing stdout normally and redirecting stderr to the temp file
     local stdout
-    stdout=$(/home/filip/Workspace/workcd-go/workcd-go "$@" 2>"$stderr_file")
+    stdout=$(/Users/FMilkovic/Workspace/workcd-go/workcd-go "$@" 2>"$stderr_file")
 
     # Check if there was any error output
     if [[ -s "$stderr_file" ]]; then
