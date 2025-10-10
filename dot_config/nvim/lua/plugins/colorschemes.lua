@@ -7,9 +7,14 @@ return {
   },
   {
     "EdenEast/nightfox.nvim",
-    opts = {
-      transparent = true,
-    },
+    name = "nightfox",
+    config = function()
+      require("nightfox").setup({
+        options = {
+          transparent = true,
+        },
+      })
+    end,
   },
   {
     "catppuccin/nvim",
