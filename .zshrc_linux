@@ -96,6 +96,7 @@ fi
 eval "$(/home/filip/Workspace/workcd-go/workcd-go --eval zsh --binary-path /home/filip/Workspace/workcd-go/workcd-go)"
 
 alias kde="wd --base-dir ~/Workspace/kde/src"
+alias game="wd --editor 'godot -e --path' --base-dir ~/Workspace/Godot"
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
